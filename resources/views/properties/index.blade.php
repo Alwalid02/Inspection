@@ -3,31 +3,67 @@
 
 @section('content')
 
-@if($message = Session::get('success'))
-<div class="alert alert-success">
-	{{ $message }}
-</div>
-@endif
-
-<div class="container-lg">
-   
-</div>
-
-
-
-
-<div class="card">
-	<div class="card-header">
-		<div class="row">
-			<div class="col col-md-6"><b>Student Data</b></div>
-			<div class="col col-md-6">
-				<a href="{{ route('properties.create') }}" class="btn btn-success btn-sm float-end">Add</a>
-			</div>
-		</div>
-	</div>
-
 
 <div class="container">
+    <div class="py-4 pull-right"> 
+        @can('property-create')
+            <a class="btn btn-primary" href="{{route('properties.create')}}"> إضافة وحدة جديدة</a>
+        @endcan
+    </div>
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card">
+            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top"
+              alt="Hollywood Sign on The Hill" />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural lead-in to
+                additional content. This content is a little bit longer.
+              </p>
+              <a href="#" class="btn btn-primary stretched-link">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top"
+              alt="Palm Springs Road" />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural lead-in to
+                additional content. This content is a little bit longer.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img-top"
+              alt="Los Angeles Skyscrapers" />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                additional content.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top"
+              alt="Skyscrapers" />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                This is a longer card with supporting text below as a natural lead-in to
+                additional content. This content is a little bit longer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
   <div class="row justify-content-center">
       <div class="col-md-8">
           <div class="card">
@@ -40,48 +76,7 @@
                       </div>
                   @endif
 
-                  <div class="card-body">
-                    <table class="table table-bordered">
-                        <tr>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Details</th>
-                            <th>Floors</th>
-                            <th>Action</th>
-                        </tr>
-                        @if(count($properties) > 0)
-            
-                            @foreach($properties as $row)
-            
-                                <tr>
-                                    <td><img src="{{ asset('images/' . $row->student_image) }}" width="75" /></td>
-                                    <td>{{ $row->name }}</td>
-                                    <td>{{ $row->detail }}</td>
-                                    <td>{{ $row->floor }}</td>
-                                    <td>
-                                        <form method="post" action="{{ route('properties.destroy', $row->id) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <a href="{{ route('properties.show', $row->id) }}" class="btn btn-primary btn-sm">View</a>
-                                            <a href="{{ route('properties.edit', $row->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                            <input type="submit" class="btn btn-danger btn-sm" value="Delete" />
-                                        </form>
-                                        
-                                    </td>
-                                </tr>
-            
-                            @endforeach
-            
-                        @else
-                            <tr>
-                                <td colspan="5" class="text-center">No Data Found</td>
-                            </tr>
-                        @endif
-                    </table>
-                    {!! $properties->links() !!}
-                </div>
-            </div>
-
+                  {{ __('You are logged in!') }}
               </div>
           </div>
       </div>
@@ -121,16 +116,16 @@
 	        <td>{{ $proprty->name }}</td>
 	        <td>{{ $proprty->detail }}</td>
 	        <td>
-                <form action="{{ route('proprties.destroy',$proprty->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('proprties.show',$proprty->id) }}">Show</a>
-                    @can('proprty-edit')
-                    <a class="btn btn-primary" href="{{ route('proprties.edit',$proprty->id) }}">Edit</a>
+                <form action="{{ route('properties.destroy',$property->id) }}" method="POST">
+                    <a class="btn btn-info" href="{{ route('properties.show',$property->id) }}">Show</a>
+                    @can('property-edit')
+                    <a class="btn btn-primary" href="{{ route('properties.edit',$property->id) }}">Edit</a>
                     @endcan
 
 
                     @csrf
                     @method('DELETE')
-                    @can('proprty-delete')
+                    @can('property-delete')
                     <button type="submit" class="btn btn-danger">Delete</button>
                     @endcan
                 </form>
@@ -140,5 +135,5 @@
     </table>
 
     {!! $properties->links() !!}
-</div>
+
 @endsection

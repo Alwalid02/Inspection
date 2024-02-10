@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\property;
+use App\Models\Room;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PropertyController extends Controller
 {
@@ -44,13 +47,42 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+        $user = Auth::user();
+        $room = new Room();
+
         request()->validate([
             'name' => 'required',
-            'detail' => 'required',
+            'description' => 'required',
         ]);
     
-        property::create($request->all());
-    
+        $property_id = property::create([
+            'company_id' => $user->company->id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'rooms' => $request->rooms,
+            'user_id' =>$user->id,
+            ])->id;
+
+            $allRooms = [];
+        foreach ($request->addmore as $key => $datas){
+            array_push($allRooms,[
+                $room->company_id = $user->company->id,
+                $room->property_id = $property_id,
+                $room->name = $request->addmore[$key]['name'],
+                $room->description = $request->addmore[$key]['description'],
+            ]);
+           
+        }
+        $item = $room::create($allRooms);
+        // foreach ($request->addmore as $key => $value) {
+        //     $room::create([
+        //         'company_id' => $user->company->id,
+        //         'property_id' => $property_id,
+        //         'name' => $request->name[$key],
+        //         'description' => $request->description[$key],
+        //     ]);
+        // }
         return redirect()->route('properties.index')
                         ->with('success','property created successfully.');
     }

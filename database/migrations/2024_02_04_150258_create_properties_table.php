@@ -19,8 +19,8 @@ return new class extends Migration
                 ->on('companies')
                 ->onDelete('cascade')->nullable();
             $table->string('name');
-            $table->text('detail');
-            $table->integer('floor');
+            $table->text('description');
+            $table->integer('rooms');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')
                 ->references('id')

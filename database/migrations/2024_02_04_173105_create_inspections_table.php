@@ -26,16 +26,15 @@ return new class extends Migration
                 ->on('properties')
                 ->onDelete('cascade')->nullable();
 
-            $table->unsignedBigInteger('floor_id')->nullable();
-            $table->foreign('floor_id')
+            $table->unsignedBigInteger('room_id')->nullable();
+            $table->foreign('room_id')
                 ->references('id')
-                ->on('floors')
+                ->on('rooms')
                 ->onDelete('cascade')->nullable();
                 
             $table->string('title');
-            $table->text('note');
-            $table->string('img');
-            $table->integer('rate');
+            $table->string('statuse');
+            $table->text('note');           
 
             $table->timestamps();
         });

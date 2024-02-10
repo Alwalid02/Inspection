@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Inspection extends Model
 {
     use HasFactory;
+    /**
+     * The attributes that are mass assignable.
+     *	
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'description','rooms','user_id'
+    ];
 }

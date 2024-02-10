@@ -43,4 +43,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+     /**
+     * All Relationship
+     */
+    public function company(){
+        return $this->belongsTo(Company::class);
+    }
 }
