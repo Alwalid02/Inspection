@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inspections', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
-
             $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')
                 ->references('id')
@@ -25,18 +24,10 @@ return new class extends Migration
                 ->references('id')
                 ->on('properties')
                 ->onDelete('cascade')->nullable();
-
-            $table->unsignedBigInteger('floor_id')->nullable();
-            $table->foreign('floor_id')
-                ->references('id')
-                ->on('floors')
-                ->onDelete('cascade')->nullable();
-                
-            $table->string('title');
-            $table->text('note');
-            $table->string('img');
-            $table->integer('rate');
-
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email');
+            $table->string('phone');
             $table->timestamps();
         });
     }
@@ -46,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inspections');
+        Schema::dropIfExists('customers');
     }
 };

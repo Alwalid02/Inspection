@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('floors', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('company_id')->nullable();
+            $table->foreign('company_id')
+                ->references('id')
+                ->on('companies')
+                ->onDelete('cascade')->nullable();
+
+            $table->string('name');
+            $table->integer('floor');
+            $table->string('description');
             $table->timestamps();
         });
     }

@@ -18,7 +18,6 @@ return new class extends Migration
                 ->references('id')
                 ->on('companies')
                 ->onDelete('cascade')->nullable();
-                
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
