@@ -109,18 +109,6 @@
                 </div>
             </div>
           <hr class="mt-4">
-          <table class="table table-bordered" id="dynamicTable">
-                <tr>
-                    <th>الإسم</th>
-                    <th>الوصف</th>
-                    <th>الحالة</th>
-                </tr>
-                <tr>  
-                    <td><input type="text" name="addmore[0][name]" placeholder="اسم الغرفة" class="form-control" /></td>  
-                    <td><input type="text" name="addmore[0][description]" placeholder=" وصف الغرفة" class="form-control" /></td>  
-                    <td><button type="button" name="add" id="add" class="btn btn-success">إضافة المزيد</button></td>  
-                </tr>  
-            </table> 
 
         <button class="w-100 btn btn-primary btn-lg" type="submit">{{$submitText}}</button>
     </div>

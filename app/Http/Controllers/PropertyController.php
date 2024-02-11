@@ -47,9 +47,9 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        
         $user = Auth::user();
-        $room = new Room();
+        $rooms = new Room();
 
         request()->validate([
             'name' => 'required',
@@ -64,25 +64,24 @@ class PropertyController extends Controller
             'user_id' =>$user->id,
             ])->id;
 
-            $allRooms = [];
-        foreach ($request->addmore as $key => $datas){
-            array_push($allRooms,[
-                $room->company_id = $user->company->id,
-                $room->property_id = $property_id,
-                $room->name = $request->addmore[$key]['name'],
-                $room->description = $request->addmore[$key]['description'],
-            ]);
-           
-        }
-        $item = $room::create($allRooms);
-        // foreach ($request->addmore as $key => $value) {
-        //     $room::create([
-        //         'company_id' => $user->company->id,
-        //         'property_id' => $property_id,
-        //         'name' => $request->name[$key],
-        //         'description' => $request->description[$key],
-        //     ]);
-        // }
+            foreach($request->all() as $key => $value){
+
+                if($key == "_token")continue;
+                if($key == "name")continue;
+                if($key == "description")continue;
+
+                if($value == 0)continue;
+                for($i=1; $i<=$value; $i++){
+
+                    $rooms::create([
+                        'company_id' => $user->company->id,
+                        'property_id' => $property_id,
+                        'name' => $key.$i,
+                        'description' => '',
+                    ]);
+                }
+            }
+        
         return redirect()->route('properties.index')
                         ->with('success','property created successfully.');
     }

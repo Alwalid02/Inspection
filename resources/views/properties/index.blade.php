@@ -5,6 +5,7 @@
 
 
 <div class="container">
+
     <div class="py-4 pull-right"> 
         @can('property-create')
             <a class="btn btn-primary" href="{{route('properties.create')}}"> إضافة وحدة جديدة</a>
@@ -12,84 +13,47 @@
     </div>
     
     <div class="row row-cols-1 row-cols-md-3 g-4">
+      
+      @foreach ($properties as $property)
         <div class="col">
-          <div class="card">
-            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top"
-              alt="Hollywood Sign on The Hill" />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural lead-in to
-                additional content. This content is a little bit longer.
-              </p>
-              <a href="#" class="btn btn-primary stretched-link">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top"
-              alt="Palm Springs Road" />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural lead-in to
-                additional content. This content is a little bit longer.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img-top"
-              alt="Los Angeles Skyscrapers" />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                additional content.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top"
-              alt="Skyscrapers" />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">
-                This is a longer card with supporting text below as a natural lead-in to
-                additional content. This content is a little bit longer.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-  <div class="row justify-content-center">
-      <div class="col-md-8">
-          <div class="card">
-              <div class="card-header">{{ __('Dashboard') }}</div>
-
+          
+          <div class="card mb-2">
+            {{-- <a href="{{route('customers.property', $property->id)}}"> --}}
+              <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top"
+                alt="Hollywood Sign on The Hill" />
               <div class="card-body">
-                  @if (session('status'))
-                      <div class="alert alert-success" role="alert">
-                          {{ session('status') }}
-                      </div>
-                  @endif
-
-                  {{ __('You are logged in!') }}
+                <h5 class="card-title">{{$property->name}}</h5>
+                <p class="card-text">
+                  {{$property->description}}
+                </p>
               </div>
+            </a>
           </div>
-      </div>
-  </div>
+           
+              <a class="btn btn-info stretched-link" href="{{ route('properties.show',$property->id) }}">عرض</a>
+                @can('property-edit')
+                <a class="btn btn-primary stretched-link" href="{{ route('properties.edit',$property->id) }}">تحرير</a>
+              @endcan
+
+          <form action="{{ route('properties.destroy',$property->id) }}" method="POST">
+              @csrf
+              @method('DELETE')
+              @can('property-delete')
+              <button type="submit" class="btn btn-danger stretched-link">حذف</button>
+              @endcan
+          </form>
+        </div>
+      @endforeach
+    </div>
 </div>
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
                 <h2>Products</h2>
             </div>
             <div class="pull-right">
-                @can('product-create')
-                <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
+                @can('property-create')
+                <a class="btn btn-success" href="{{ route('properties.create') }}"> Create New Product</a>
                 @endcan
             </div>
         </div>
@@ -110,11 +74,11 @@
             <th>Details</th>
             <th width="280px">Action</th>
         </tr>
-	    @foreach ($properties as $proprty)
+	    @foreach ($properties as $property)
 	    <tr>
 	        <td>{{ ++$i }}</td>
-	        <td>{{ $proprty->name }}</td>
-	        <td>{{ $proprty->detail }}</td>
+	        <td>{{ $property->name }}</td>
+	        <td>{{ $property->detail }}</td>
 	        <td>
                 <form action="{{ route('properties.destroy',$property->id) }}" method="POST">
                     <a class="btn btn-info" href="{{ route('properties.show',$property->id) }}">Show</a>
@@ -134,6 +98,6 @@
 	    @endforeach
     </table>
 
-    {!! $properties->links() !!}
+    {!! $properties->links() !!} --}}
 
 @endsection
