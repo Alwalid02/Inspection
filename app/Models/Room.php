@@ -17,4 +17,11 @@ class Room extends Model
     protected $fillable = [
         'company_id', 'property_id', 'name', 'description'
     ];
+    public function property(){
+        return $this->belongsTo(Property::class);
+    }
+
+    public function company(){
+        return $this->belongsTo(Company::class);
+    }
 }

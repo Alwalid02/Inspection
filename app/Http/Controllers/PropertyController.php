@@ -60,7 +60,6 @@ class PropertyController extends Controller
             'company_id' => $user->company->id,
             'name' => $request->name,
             'description' => $request->description,
-            'rooms' => $request->rooms,
             'user_id' =>$user->id,
             ])->id;
 

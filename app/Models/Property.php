@@ -16,4 +16,12 @@ class Property extends Model
     protected $fillable = [
         'company_id', 'name', 'description','rooms','user_id'
     ];
+
+    public function company(){
+        return $this->belongsTo(Company::class);
+    }
+
+    public function rooms(){
+        return $this->hasMany(Room::class, 'property_id');
+    }
 }

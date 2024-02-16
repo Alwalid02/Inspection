@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Property;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        
+        $customers = customer::latest()->paginate(5);
+        return view('customers.index',compact('customers'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -76,4 +79,13 @@ class CustomerController extends Controller
     {
         //
     }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function property()
+    {
+        return view('customers.property');
+    }
+
 }

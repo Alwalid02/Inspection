@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Inspection;
+use App\Models\Property;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,7 @@ class InspectionController extends Controller
      */
     public function create()
     {
-        //
+        return view('inspections.create');
     }
 
     /**
@@ -43,9 +44,9 @@ class InspectionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Inspection $inspection)
+    public function edit(Property $property)
     {
-        //
+        
     }
 
     /**
@@ -62,5 +63,19 @@ class InspectionController extends Controller
     public function destroy(Inspection $inspection)
     {
         //
+    }
+
+    /**
+     * 
+     */
+    public function forms($property){
+        
+        $properties = Property::find($property);
+        $rooms = $properties->rooms;
+        // dd($rooms);
+        // $properties->find($property)->get();
+        // dd($properties[0]['name']);
+        return view('inspections.form', compact('properties' ,'rooms'));
+
     }
 }

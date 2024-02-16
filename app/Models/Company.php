@@ -21,5 +21,12 @@ class Company extends Model
     public function users(){
         return $this->hasMany(User::class, 'company_id');
     }
-    
+
+    public function properties(){
+        return $this->hasMany(Property::class, 'company_id');
+    }
+
+    public function rooms(){
+        return $this->hasMany(Room::class, 'company_id');
+    }
 }
