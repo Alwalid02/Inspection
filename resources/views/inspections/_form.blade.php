@@ -6,7 +6,9 @@
     <p class="lead"> الرجاء ادخال بيانات الوحدة كاملة مع رفع المخطط ليتمكن فريقك بخدمة عملائك بشكل ممتاز </p>
 </div>
 
-    
+@php
+$i = 1;
+@endphp
 
 <div class="row g-3 ">
     
@@ -16,51 +18,63 @@
             
             <div class="col-sm-8">
                 {{-- <label for="Name" class="form-label">اسم الوحدة</label> --}}
-                <input type="text" name="name" class="form-control" id="firstName" placeholder="" value="" required>
+                {{-- <input type="text" name="name" class="form-control" id="firstName" placeholder="" value="" required> --}}
                 <div class="invalid-feedback">
                     يرجى إدخال اسم الوحدة صحيح.
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 <a class="btn btn-primary" href="{{route('customers.create')}}"> عميل جديد</a>
             </div>
-            <table class="table table-bordered">
-              @foreach ($rooms as $key => $room)
-                <tr>
-                  <td rowspan="6">{{$room->name}}</td>
-                  <td>
-                    
-                  </td>
-                  <td>B1</td>
-                  <td>B1</td>
-                </tr>
-                <tr>
-                  <td>B2</td>
-                  <td>B2</td>
-                  <td>B2</td>
-                </tr>
-                <tr>
-                  <td>B2</td>
-                  <td>B2</td>
-                  <td>B2</td>
-                </tr> 
-                <tr>
-                  <td>B2</td>
-                  <td>B2</td>
-                  <td>B2</td>
-                </tr> 
-                <tr>
-                  <td>B2</td>
-                  <td>B2</td>
-                  <td>B2</td>
-                </tr> 
-                <tr>
-                  <td>B2</td>
-                  <td>B2</td>
-                  <td>B2</td>
-                </tr> 
-                @endforeach
-          </table>
+            
+
+            @foreach ($rooms as $key => $room)
+            <div class="row mt-5">
+              <div class='col-md-3 col-xs-3'>
+                <p>{{$room->name}}</p>
+              </div>
+              <div class="col-md-9 col-xs-9">
+                <table class="table table-bordered">
+                  <tr>
+                    <td>البند</td>
+                    <td>الحالة</td>
+                    <td>ملاحظات</td>
+                    <td>صور</td>
+                  </tr>
+                  @foreach ($pRoom as $item)
+                  <tr>
+                      
+                      <td>
+                        {{-- @if ($room->name == 'غرفة_المعيشة'.$i++) --}}
+                          <input type="hidden" name="name[]" value="{{$room->name}}">
+                          <input type="hidden" name="title[]" value="{{$item}}">
+                                {{$item}}
+                            
+                        {{-- @elseif (count($records) > 1)
+                            I have multiple records! --}}
+                        {{-- @else --}}
+                        {{-- @endif --}}
+                      </td>
+                     
+                      <td>
+                        {{-- <input type="checkbox" name="statuse[]" id="" value="غير مقبول">
+                        <label for="غير مقبول">غير مقبول</label>
+                        <input type="checkbox" name="statuse[]" id="" value="ممتاز">
+                        <label for="ممتاز">ممتاز</label> --}}
+                      </td>
+                      <td>
+                        <textarea name="note[]" id="" rows="2"></textarea>
+                      </td>
+                      <td>
+                        <input type="file" name="images[]" id="inputImage" multiple>
+                      </td>
+                    </tr>
+                    @endforeach
+              </table>
+              </div>
+            </div>
+            @endforeach
+            
           <hr class="mt-4">
 
         <button class="w-100 btn btn-primary btn-lg" type="submit">{{$submitText}}</button>

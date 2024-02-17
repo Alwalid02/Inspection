@@ -14,6 +14,6 @@ class Inspection extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description','rooms','user_id'
+        'company_id','property_id', 'room_id', 'name', 'title','statuse', 'note',
     ];
 }

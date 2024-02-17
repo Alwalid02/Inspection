@@ -67,46 +67,48 @@
 
                 {{-- تفاصيل الوحدة --}}
             <div class="col-md-2">
-                <label for="country" class="form-label">غروف نوم</label>
-                <input type="text" name="rooms" class="form-control" id="badroom" placeholder="" value="" required>
+                <label for="country" class="form-label">غرفة المعيشة</label>
+                <input type="text" name="غرفة المعيشة" class="form-control" id="badroom" placeholder="" value="" required>
             </div>
 
             <div class="col-md-2">
-                <label for="state" class="form-label">حمام</label>
-                <input type="text" name="bathroom" class="form-control" id="badroom" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                يرجى اختيار اسم منطقة صحيح.
-                </div>
+                <label for="state" class="form-label">الحمام</label>
+                <input type="text" name="الحمام" class="form-control" id="badroom" placeholder="" value="" required>
             </div>
 
             <div class="col-md-2">
-                <label for="zip" class="form-label"> صالة</label>
-                <input type="text" name="lounge" class="form-control" id="zip" placeholder="" required>
-                <div class="invalid-feedback">
-                    الرمز البريدي مطلوب.
-                </div>
-            </div>
-
-            {{-- تفاصيل الوحدة --}}
-            <div class="col-md-2">
-                <label for="country" class="form-label">ممر</label>
-                <input type="text" name="corridor" class="form-control" id="badroom" placeholder="" value="" required>
+                <label for="zip" class="form-label"> الصالة</label>
+                <input type="text" name="الصالة" class="form-control" id="zip" placeholder="" required>
             </div>
 
             <div class="col-md-2">
-                <label for="state" class="form-label">سور جانبي</label>
-                <input type="text" class="form-control" id="badroom" placeholder="" value="" required>
-                <div class="invalid-feedback">
-                يرجى اختيار اسم منطقة صحيح.
-                </div>
+                <label for="zip" class="form-label"> المجلس</label>
+                <input type="text" name="المجلس" class="form-control" id="zip" placeholder="" required>
             </div>
 
             <div class="col-md-2">
-                <label for="zip" class="form-label"> سطح</label>
-                <input type="text" name="roof" class="form-control" placeholder="" required>
-                <div class="invalid-feedback">
-                    الرمز البريدي مطلوب.
-                </div>
+                <label for="zip" class="form-label"> المطبخ</label>
+                <input type="text" name="المطبخ" class="form-control" id="zip" placeholder="" required>
+            </div>
+
+            <div class="col-md-2">
+                <label for="country" class="form-label">المدخل</label>
+                <input type="text" name="المدخل" class="form-control" id="المدخل" placeholder="" value="" required>
+            </div>
+
+            <div class="col-md-2">
+                <label for="state" class="form-label">فناء المنزل </label>
+                <input type="text" name="فناء المنزل" class="form-control" id="فناء المنزل" placeholder="" value="" required>
+            </div>
+
+            <div class="col-md-2">
+                <label for="state" class="form-label">المساحة الخارجية</label>
+                <input type="text" name="المساحة الخارجية" class="form-control" id="المساحة الخارجية" placeholder="" value="" required>
+            </div>
+
+            <div class="col-md-2">
+                <label for="zip" class="form-label">السطح</label>
+                <input type="text" name="السطح" class="form-control" placeholder="" required>
             </div>
           <hr class="mt-4">
 
