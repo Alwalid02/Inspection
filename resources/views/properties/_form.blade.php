@@ -67,8 +67,8 @@
 
                 {{-- تفاصيل الوحدة --}}
             <div class="col-md-2">
-                <label for="country" class="form-label">غرفة المعيشة</label>
-                <input type="text" name="غرفة المعيشة" class="form-control" id="badroom" placeholder="" value="" required>
+                <label for="country" class="form-label">غرفة النوم</label>
+                <input type="text" name="غرفة النوم" class="form-control" id="badroom" placeholder="" value="" required>
             </div>
 
             <div class="col-md-2">
@@ -77,8 +77,8 @@
             </div>
 
             <div class="col-md-2">
-                <label for="zip" class="form-label"> الصالة</label>
-                <input type="text" name="الصالة" class="form-control" id="zip" placeholder="" required>
+                <label for="zip" class="form-label"> غرفة المعيشة</label>
+                <input type="text" name="غرفة المعيشة" class="form-control" id="zip" placeholder="" required>
             </div>
 
             <div class="col-md-2">

@@ -6,9 +6,6 @@
     <p class="lead"> الرجاء ادخال بيانات الوحدة كاملة مع رفع المخطط ليتمكن فريقك بخدمة عملائك بشكل ممتاز </p>
 </div>
 
-@php
-$i = 1;
-@endphp
 
 <div class="row g-3 ">
     
@@ -26,12 +23,12 @@ $i = 1;
             <div class="col-sm-2">
                 <a class="btn btn-primary" href="{{route('customers.create')}}"> عميل جديد</a>
             </div>
-            
 
             @foreach ($rooms as $key => $room)
             <div class="row mt-5">
               <div class='col-md-3 col-xs-3'>
                 <p>{{$room->name}}</p>
+              
               </div>
               <div class="col-md-9 col-xs-9">
                 <table class="table table-bordered">
@@ -41,26 +38,21 @@ $i = 1;
                     <td>ملاحظات</td>
                     <td>صور</td>
                   </tr>
-                  @foreach ($pRoom as $item)
+                    @foreach ($pRoom as $item)
                   <tr>
-                      
                       <td>
-                        {{-- @if ($room->name == 'غرفة_المعيشة'.$i++) --}}
+                          <input type="hidden" name="property_id[]" value="{{$property_id}}">
+                          <input type="hidden" name="room_id[]" value="{{$room->id}}">
                           <input type="hidden" name="name[]" value="{{$room->name}}">
                           <input type="hidden" name="title[]" value="{{$item}}">
                                 {{$item}}
-                            
-                        {{-- @elseif (count($records) > 1)
-                            I have multiple records! --}}
-                        {{-- @else --}}
-                        {{-- @endif --}}
                       </td>
                      
                       <td>
-                        {{-- <input type="checkbox" name="statuse[]" id="" value="غير مقبول">
-                        <label for="غير مقبول">غير مقبول</label>
-                        <input type="checkbox" name="statuse[]" id="" value="ممتاز">
-                        <label for="ممتاز">ممتاز</label> --}}
+                        <select name="statuse[]" id="">
+                          <option value="ممتاز">ممتاز</option>
+                          <option value="غير مقبول">غير مقبول</option>
+                        </select>
                       </td>
                       <td>
                         <textarea name="note[]" id="" rows="2"></textarea>
