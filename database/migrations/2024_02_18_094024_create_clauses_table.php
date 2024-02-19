@@ -11,20 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rooms', function (Blueprint $table) {
+        Schema::create('clauses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('company_id')->nullable();
-            $table->foreign('company_id')
-                ->references('id')
-                ->on('companies')
-                ->onDelete('cascade')->nullable();
 
-            $table->unsignedBigInteger('property_id')->nullable();
-            $table->foreign('property_id')
-                ->references('id')
-                ->on('properties')
-                ->onDelete('cascade')->nullable();
-            
             $table->unsignedBigInteger('room_type_id')->nullable();
             $table->foreign('room_type_id')
                 ->references('id')
@@ -33,7 +22,6 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('description');
-
             $table->timestamps();
         });
     }
@@ -43,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rooms');
+        Schema::dropIfExists('clauses');
     }
 };

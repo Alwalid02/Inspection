@@ -78,7 +78,7 @@
 
             <div class="col-md-2">
                 <label for="zip" class="form-label"> غرفة المعيشة</label>
-                <input type="text" name="غرفة المعيشة" class="form-control" id="zip" placeholder="" required>
+                <input type="text" name="الصالة " class="form-control" id="zip" placeholder="" required>
             </div>
 
             <div class="col-md-2">

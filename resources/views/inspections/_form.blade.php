@@ -24,7 +24,7 @@
                 <a class="btn btn-primary" href="{{route('customers.create')}}"> عميل جديد</a>
             </div>
 
-            @foreach ($rooms as $key => $room)
+          @foreach ($rooms as $key => $room)
             <div class="row mt-5">
               <div class='col-md-3 col-xs-3'>
                 <p>{{$room->name}}</p>
@@ -38,34 +38,256 @@
                     <td>ملاحظات</td>
                     <td>صور</td>
                   </tr>
-                    @foreach ($pRoom as $item)
-                  <tr>
-                      <td>
-                          <input type="hidden" name="property_id[]" value="{{$property_id}}">
-                          <input type="hidden" name="room_id[]" value="{{$room->id}}">
-                          <input type="hidden" name="name[]" value="{{$room->name}}">
-                          <input type="hidden" name="title[]" value="{{$item}}">
-                                {{$item}}
-                      </td>
-                     
-                      <td>
-                        <select name="statuse[]" id="">
-                          <option value="ممتاز">ممتاز</option>
-                          <option value="غير مقبول">غير مقبول</option>
-                        </select>
-                      </td>
-                      <td>
-                        <textarea name="note[]" id="" rows="2"></textarea>
-                      </td>
-                      <td>
-                        <input type="file" name="images[]" id="inputImage" multiple>
-                      </td>
-                    </tr>
+
+                        {{-- Badroom --}}
+                  @if ($room->room_type_id === 1)
+                      @foreach ($roomType[0]->clauses as $item)
+                        <tr>
+                          <td>
+                              <input type="hidden" name="property_id[]" value="{{$property_id}}">
+                              <input type="hidden" name="room_type_id[]" value="{{$item->room_type_id}}">
+                              <input type="hidden" name="room_id[]" value="{{$room->id}}">
+                              <input type="hidden" name="clause_id[]" value="{{$item->id}}">
+                                  {{$item->name}}
+                          </td>
+                        
+                          <td>
+                            <select name="statuse[]" id="">
+                              <option value="ممتاز">ممتاز</option>
+                              <option value="غير مقبول">غير مقبول</option>
+                            </select>
+                          </td>
+                          <td>
+                            <textarea name="note[]" id="" rows="2"></textarea>
+                          </td>
+                          <td>
+                            <input type="file" name="images[]" id="inputImage" multiple>
+                          </td>
+                        </tr>
+                      @endforeach
+                  @endif
+                        {{-- Bathroom --}}
+                  @if ($room->room_type_id === 2)
+                      @foreach ($roomType[1]->clauses as $item)
+                        <tr>
+                          <td>
+                              <input type="hidden" name="property_id[]" value="{{$property_id}}">
+                              <input type="hidden" name="room_type_id[]" value="{{$item->room_type_id}}">
+                              <input type="hidden" name="room_id[]" value="{{$room->id}}">
+                              <input type="hidden" name="clause_id[]" value="{{$item->id}}">
+                                  {{$item->name}}
+                          </td>
+                        
+                          <td>
+                            <select name="statuse[]" id="">
+                              <option value="ممتاز">ممتاز</option>
+                              <option value="غير مقبول">غير مقبول</option>
+                            </select>
+                          </td>
+                          <td>
+                            <textarea name="note[]" id="" rows="2"></textarea>
+                          </td>
+                          <td>
+                            <input type="file" name="images[]" id="inputImage" multiple>
+                          </td>
+                        </tr>
+                      @endforeach
+                  @endif
+                      {{-- Bathroom --}}
+                  @if ($room->room_type_id === 3)
+                    @foreach ($roomType[2]->clauses as $item)
+                      <tr>
+                        <td>
+                            <input type="hidden" name="property_id[]" value="{{$property_id}}">
+                            <input type="hidden" name="room_type_id[]" value="{{$item->room_type_id}}">
+                            <input type="hidden" name="room_id[]" value="{{$room->id}}">
+                            <input type="hidden" name="clause_id[]" value="{{$item->id}}">
+                                {{$item->name}}
+                        </td>
+                      
+                        <td>
+                          <select name="statuse[]" id="">
+                            <option value="ممتاز">ممتاز</option>
+                            <option value="غير مقبول">غير مقبول</option>
+                          </select>
+                        </td>
+                        <td>
+                          <textarea name="note[]" id="" rows="2"></textarea>
+                        </td>
+                        <td>
+                          <input type="file" name="images[]" id="inputImage" multiple>
+                        </td>
+                      </tr>
                     @endforeach
+                  @endif
+
+                  {{-- Badroom --}}
+                  @if ($room->room_type_id === 4)
+                      @foreach ($roomType[3]->clauses as $item)
+                        <tr>
+                          <td>
+                              <input type="hidden" name="property_id[]" value="{{$property_id}}">
+                              <input type="hidden" name="room_type_id[]" value="{{$item->room_type_id}}">
+                              <input type="hidden" name="room_id[]" value="{{$room->id}}">
+                              <input type="hidden" name="clause_id[]" value="{{$item->id}}">
+                                  {{$item->name}}
+                          </td>
+                        
+                          <td>
+                            <select name="statuse[]" id="">
+                              <option value="ممتاز">ممتاز</option>
+                              <option value="غير مقبول">غير مقبول</option>
+                            </select>
+                          </td>
+                          <td>
+                            <textarea name="note[]" id="" rows="2"></textarea>
+                          </td>
+                          <td>
+                            <input type="file" name="images[]" id="inputImage" multiple>
+                          </td>
+                        </tr>
+                      @endforeach
+                  @endif
+                        {{-- Bathroom --}}
+                  @if ($room->room_type_id === 5)
+                      @foreach ($roomType[4]->clauses as $item)
+                        <tr>
+                          <td>
+                              <input type="hidden" name="property_id[]" value="{{$property_id}}">
+                              <input type="hidden" name="room_type_id[]" value="{{$item->room_type_id}}">
+                              <input type="hidden" name="room_id[]" value="{{$room->id}}">
+                              <input type="hidden" name="clause_id[]" value="{{$item->id}}">
+                                  {{$item->name}}
+                          </td>
+                        
+                          <td>
+                            <select name="statuse[]" id="">
+                              <option value="ممتاز">ممتاز</option>
+                              <option value="غير مقبول">غير مقبول</option>
+                            </select>
+                          </td>
+                          <td>
+                            <textarea name="note[]" id="" rows="2"></textarea>
+                          </td>
+                          <td>
+                            <input type="file" name="images[]" id="inputImage" multiple>
+                          </td>
+                        </tr>
+                      @endforeach
+                  @endif
+                      {{-- المدخل --}}
+                  @if ($room->room_type_id === 6)
+                    @foreach ($roomType[5]->clauses as $item)
+                      <tr>
+                        <td>
+                            <input type="hidden" name="property_id[]" value="{{$property_id}}">
+                            <input type="hidden" name="room_type_id[]" value="{{$item->room_type_id}}">
+                            <input type="hidden" name="room_id[]" value="{{$room->id}}">
+                            <input type="hidden" name="clause_id[]" value="{{$item->id}}">
+                                {{$item->name}}
+                        </td>
+                      
+                        <td>
+                          <select name="statuse[]" id="">
+                            <option value="ممتاز">ممتاز</option>
+                            <option value="غير مقبول">غير مقبول</option>
+                          </select>
+                        </td>
+                        <td>
+                          <textarea name="note[]" id="" rows="2"></textarea>
+                        </td>
+                        <td>
+                          <input type="file" name="images[]" id="inputImage" multiple>
+                        </td>
+                      </tr>
+                    @endforeach
+                  @endif
+                  {{--فناء_المنزل --}}
+                  @if ($room->room_type_id === 7)
+                    @foreach ($roomType[6]->clauses as $item)
+                      <tr>
+                        <td>
+                            <input type="hidden" name="property_id[]" value="{{$property_id}}">
+                            <input type="hidden" name="room_type_id[]" value="{{$item->room_type_id}}">
+                            <input type="hidden" name="room_id[]" value="{{$room->id}}">
+                            <input type="hidden" name="clause_id[]" value="{{$item->id}}">
+                                {{$item->name}}
+                        </td>
+                      
+                        <td>
+                          <select name="statuse[]" id="">
+                            <option value="ممتاز">ممتاز</option>
+                            <option value="غير مقبول">غير مقبول</option>
+                          </select>
+                        </td>
+                        <td>
+                          <textarea name="note[]" id="" rows="2"></textarea>
+                        </td>
+                        <td>
+                          <input type="file" name="images[]" id="inputImage" multiple>
+                        </td>
+                      </tr>
+                    @endforeach
+                  @endif
+                  {{-- المساحة_الخارجية --}}
+                  @if ($room->room_type_id === 8)
+                    @foreach ($roomType[7]->clauses as $item)
+                      <tr>
+                        <td>
+                            <input type="hidden" name="property_id[]" value="{{$property_id}}">
+                            <input type="hidden" name="room_type_id[]" value="{{$item->room_type_id}}">
+                            <input type="hidden" name="room_id[]" value="{{$room->id}}">
+                            <input type="hidden" name="clause_id[]" value="{{$item->id}}">
+                                {{$item->name}}
+                        </td>
+                      
+                        <td>
+                          <select name="statuse[]" id="">
+                            <option value="ممتاز">ممتاز</option>
+                            <option value="غير مقبول">غير مقبول</option>
+                          </select>
+                        </td>
+                        <td>
+                          <textarea name="note[]" id="" rows="2"></textarea>
+                        </td>
+                        <td>
+                          <input type="file" name="images[]" id="inputImage" multiple>
+                        </td>
+                      </tr>
+                    @endforeach
+                  @endif
+                  {{-- السطح --}}
+                  @if ($room->room_type_id === 9)
+                    @foreach ($roomType[8]->clauses as $item)
+                      <tr>
+                        <td>
+                            <input type="hidden" name="property_id[]" value="{{$property_id}}">
+                            <input type="hidden" name="room_type_id[]" value="{{$item->room_type_id}}">
+                            <input type="hidden" name="room_id[]" value="{{$room->id}}">
+                            <input type="hidden" name="clause_id[]" value="{{$item->id}}">
+                                {{$item->name}}
+                        </td>
+                      
+                        <td>
+                          <select name="statuse[]" id="">
+                            <option value="ممتاز">ممتاز</option>
+                            <option value="غير مقبول">غير مقبول</option>
+                          </select>
+                        </td>
+                        <td>
+                          <textarea name="note[]" id="" rows="2"></textarea>
+                        </td>
+                        <td>
+                          <input type="file" name="images[]" id="inputImage" multiple>
+                        </td>
+                      </tr>
+                    @endforeach
+                  @endif                   
+
               </table>
               </div>
             </div>
-            @endforeach
+          @endforeach
             
           <hr class="mt-4">
 

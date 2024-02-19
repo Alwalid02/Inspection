@@ -29,4 +29,8 @@ class Company extends Model
     public function rooms(){
         return $this->hasMany(Room::class, 'company_id');
     }
+
+    public function inspections(){
+        return $this->hasMany(Inspection::class, 'company_id');
+    }
 }

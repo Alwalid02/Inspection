@@ -13,7 +13,22 @@ return new class extends Migration
     {
         Schema::create('forms', function (Blueprint $table) {
             $table->id();
-            
+            $table->integer('form_number');
+            $table->string('form_type');
+            $table->string('name');
+
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->foreign('created_by')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')->nullable();
+
+            $table->unsignedBigInteger('updated_by')->nullable();
+            $table->foreign('updated_by')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')->nullable();
+
             $table->timestamps();
         });
     }

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Inspection;
 use App\Models\Property;
+use App\Models\Clause;
+use App\Models\RoomType;
+use App\Models\Room;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,29 +36,32 @@ class InspectionController extends Controller
      */
     public function store(Request $request)
     {
+
+        dd($request->all());
         $user = Auth::user();
 
         // get the input arrays
         $property_ids = $request->input('property_id');
-        $names = $request->input('name');
+        $room_type_ids = $request->input('room_type_id');
         $room_ids = $request->input('room_id');
-        $titles  = $request->input('title');
+        $clause_ids  = $request->input('clause_id');
         $statuses = $request->input('statuse');
         $notes = $request->input('note');
        
         // loop through the arrays and create data models
-        foreach ($titles as $index => $title) {
+        foreach ($clause_ids as $index => $clause_id) {
             $property_id = $property_ids[$index];
-            $name = $names[$index];
+            $room_type_id = $room_type_ids[$index];
             $room_id = $room_ids[$index];
+            $clause_id = $clause_ids[$index];
             $statuse = $statuses[$index];
             $note = $notes[$index];
             Inspection::create([
                 'company_id' => $user->company->id,
                 'property_id' => $property_id,
+                'room_type_id' => $room_type_id,
                 'room_id' => $room_id,
-                'name' => $name,
-                'title' => $title,
+                'clause_id' => $clause_id,
                 'statuse' =>$statuse,
                 'note' => '$note',
                 'created_by' => $user->id,
@@ -101,15 +107,19 @@ class InspectionController extends Controller
      * 
      */
     public function forms($property){
-        $pRoom = ['السقف','الأرضية','النعلات','الجدران','مصابيح الإضاءة','أفياش الكهرباء','الأبواب','النوافذ','التكييف'];
-        $loung = ['السقف','الأرضية','النعلات','الجدران','مصابيح الإضاءة','أفياش الكهرباء','الأبواب','النوافذ','التكييف','الدرابزين','الدرج'];
-        
+
+        $roomType = RoomType::with('clauses')->get();
+        $rooms = Room::with('roomType')->where('property_id', $property)->get();
+        $clauses = Clause::with('roomType')->get();
+
+        // dd($roomType[4]->clauses);
+       
         $properties = Property::find($property);
-        $rooms = $properties->rooms;
+        // $rooms = $properties->rooms;
         $property_id = $properties->id;
         // $properties->find($property)->get();
         // dd($properties[0]['name']);
-        return view('inspections.form', compact('property_id' ,'rooms','pRoom', 'loung'));
+        return view('inspections.form', compact('property_id' ,'rooms', 'roomType'));
 
     }
 }

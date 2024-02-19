@@ -5,26 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Property extends Model
+class RoomType extends Model
 {
     use HasFactory;
+
     /**
      * The attributes that are mass assignable.
      *	
      * @var array
      */
     protected $fillable = [
-        'company_id', 'name', 'description','rooms','user_id'
+        'name', 'description'
     ];
 
-    public function company(){
-        return $this->belongsTo(Company::class);
+    public function rooms(){
+        return $this->hasMany(Room::class, 'room_type_id');
+    }
+    public function clauses(){
+        return $this->hasMany(Clause::class, 'room_type_id');
     }
 
-    public function rooms(){
-        return $this->hasMany(Room::class, 'property_id');
-    }
     public function inspections(){
-        return $this->hasMany(Inspection::class, 'property_id');
+        return $this->hasMany(Inspection::class, 'room_type_id');
     }
 }

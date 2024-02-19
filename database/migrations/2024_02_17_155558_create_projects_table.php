@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')
                 ->references('id')
@@ -20,9 +21,9 @@ return new class extends Migration
                 ->onDelete('cascade')->nullable();
                 
             $table->string('name');
+            $table->text('description');
             $table->string('city');
-            $tabel->string('location');
-
+            $table->string('location');
             $table->timestamps();
         });
     }

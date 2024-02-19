@@ -72,9 +72,32 @@ class PropertyController extends Controller
                 if($value == 0)continue;
                 for($i=1; $i<=$value; $i++){
 
+                    if($key == 'غرفة_النوم'){
+                        $roomType = 1;
+                    }elseif ($key == 'الصالة') {
+                        $roomType = 2;
+                    }elseif ($key == 'المجلس') {
+                        $roomType = 3;
+                    }elseif ($key == 'المطبخ') {
+                        $roomType = 4;
+                    }elseif ($key == 'الحمام') {
+                        $roomType = 5;
+                    }elseif ($key == 'المدخل') {
+                        $roomType = 6;
+                    }elseif ($key == 'فناء_المنزل') {
+                        $roomType = 7;
+                    }elseif ($key == 'المساحة_الخارجية') {
+                        $roomType = 8;
+                    }elseif ($key == 'السطح') {
+                        $roomType = 9;
+                    }
+                    else {
+                       $roomType =3;
+                    };
                     $rooms::create([
                         'company_id' => $user->company->id,
                         'property_id' => $property_id,
+                        'room_type_id' => $roomType,
                         'name' => $key.$i,
                         'description' => '',
                     ]);
